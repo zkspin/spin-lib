@@ -4,7 +4,7 @@ import { ZKProver } from "../zkwasm";
 import {
     SubmissionMetaData,
     convertPlayerActionToPublicPrivateInputs,
-} from "./spin_game_prover";
+} from "./spin_game";
 
 export interface SpinZKProverSubmissionData {
     game_id: bigint;
@@ -80,8 +80,8 @@ export class SpinZKProver extends SpinGameProverAbstract<
         console.log("privateInputs = ", privateInputs);
 
         const proof = await this.zkProver.prove(
-            publicInputs.map((i) => `${i}:i64`),
-            [...privateInputs.map((m) => `${m}:i64`)]
+            publicInputs.map((i: bigint) => `${i}:i64`),
+            [...privateInputs.map((m: bigint) => `${m}:i64`)]
         );
 
         return proof;
