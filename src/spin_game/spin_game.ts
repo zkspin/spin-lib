@@ -1,6 +1,45 @@
-import { GameplayAbstract, SpinGameProverAbstract } from "./interface";
+import { GameplayAbstract, SpinGameProverAbstract } from "../interface";
 
-interface SpinConstructor<TInput, TOutput> {
+import {
+    EMPTY_STATE_HASH,
+    computeSegmentHash,
+    bytes32ToU64Array,
+    computeHashInU64Array,
+} from "../util";
+
+export interface SubmissionMetaData {
+    game_id: bigint;
+}
+
+export function convertPlayerActionToPublicPrivateInputs(
+    initialStates: bigint[],
+    playerActions: bigint[],
+    metaData: SubmissionMetaData
+): {
+    publicInputs: bigint[];
+    privateInputs: bigint[];
+} {
+    const onchain_meta_transaction_hash = computeSegmentHash({
+        gameID: metaData.game_id,
+        onChainGameStateHash: initialStates.every((x) => x === BigInt(0))
+            ? bytes32ToU64Array(EMPTY_STATE_HASH) // no state stored on-chain, use empty state
+            : computeHashInU64Array(initialStates),
+        gameInputHash: computeHashInU64Array(playerActions),
+    });
+
+    const publicInputs = onchain_meta_transaction_hash;
+
+    const privateInputs = [
+        metaData.game_id,
+        ...initialStates,
+        BigInt(playerActions.length),
+        ...playerActions,
+    ];
+
+    return { publicInputs, privateInputs };
+}
+
+export interface SpinConstructor<TInput, TOutput> {
     gameplay: GameplayAbstract;
     gameplayProver: SpinGameProverAbstract<TInput, TOutput>;
 }

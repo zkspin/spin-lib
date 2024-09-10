@@ -1,15 +1,28 @@
 {
-  "name": "spin-lib",
+  "name": "@zkspin/lib",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/*.spec.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.3.19",
+    "@types/mocha": "^10.0.7",
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3",
+    "tsx": "^4.19.0",
     "typescript": "^5.6.2"
+  },
+  "optionalDependencies": {
+    "zkwasm-service-helper": "github:DelphinusLab/zkWasm-service-helper"
   }
 }

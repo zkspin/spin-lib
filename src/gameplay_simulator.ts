@@ -1,7 +1,7 @@
-import { computeHashUint64Array } from "./dataHasher";
+import { computeHashInU64Array } from "./util";
 import { GameplayAbstract } from "./interface";
-import { SpinGame } from "./spin_game";
-import { SpinDummyProver } from "./spin_game_prover";
+import { SpinGame } from "./spin_game/spin_game";
+import { SpinDummyProver } from "./spin_game/prover_dummy";
 
 class GameplaySimulator {
     async simulateGame(
@@ -23,7 +23,7 @@ class GameplaySimulator {
         const computedStates = await spin.getCurrentGameState();
 
         console.log(`Final state: ${computedStates}`);
-        const computedFinalStateHash = computeHashUint64Array(computedStates);
+        const computedFinalStateHash = computeHashInU64Array(computedStates);
 
         return {
             computedFinalStateHash,
