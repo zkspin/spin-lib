@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "AggregatorLib",
+  "sourceName": "contracts/shared/zkwasm_verifier/AggregatorLib.sol",
+  "abi": [],
+  "bytecode": "0x60808060405234601757603a9081601d823930815050f35b600080fdfe600080fdfea2646970667358221220e78c8a8742f514b24f4eedea3e88ba7d1d00f450848d20666376e69e06d335a564736f6c63430008180033",
+  "deployedBytecode": "0x600080fdfea2646970667358221220e78c8a8742f514b24f4eedea3e88ba7d1d00f450848d20666376e69e06d335a564736f6c63430008180033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

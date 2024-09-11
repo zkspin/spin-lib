@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "AggregatorVerifierCoreStep",
+  "sourceName": "contracts/shared/zkwasm_verifier/AggregatorVerifier.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "transcript",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "aux",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "buf",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "verify_proof",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
