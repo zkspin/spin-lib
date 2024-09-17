@@ -99,6 +99,7 @@ function computeOPZKSubmissionHash(submissionData: {
     game_id: bigint;
     submission_nonce: bigint;
     segments: SegmentData[];
+    uninitializedOnchainState: boolean | undefined;
 }): string {
     const _hash = ethers.sha256(
         ethers.AbiCoder.defaultAbiCoder().encode(
@@ -107,8 +108,12 @@ function computeOPZKSubmissionHash(submissionData: {
                 submissionData.game_id,
                 submissionData.submission_nonce,
                 [
-                    ...submissionData.segments.map((x) =>
-                        computeHashInBytes32(x.initial_states)
+                    ...submissionData.segments.map((x, i) =>
+                        i == 0 &&
+                        submissionData.uninitializedOnchainState &&
+                        x.initial_states.every((x) => x === BigInt(0))
+                            ? EMPTY_STATE_HASH
+                            : computeHashInBytes32(x.initial_states)
                     ),
                     computeHashInBytes32(
                         submissionData.segments[
