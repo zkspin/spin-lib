@@ -95,37 +95,51 @@ function computeSegmentHash({
     return bytes32ToU64Array(_hash);
 }
 
+function encodeInitialStatesToBytes32(
+    initialStates: bigint[][],
+    finalState: bigint[],
+    uninitializedOnchainState: boolean
+) {
+    return [
+        ...initialStates.map((x, i) =>
+            i == 0 &&
+            uninitializedOnchainState &&
+            x.every((x) => x === BigInt(0))
+                ? EMPTY_STATE_HASH
+                : computeHashInBytes32(x)
+        ),
+        computeHashInBytes32(finalState),
+    ];
+}
+
+function encodePlayerActionToBytes32(playerAction: bigint[][]) {
+    return playerAction.map((x) => computeHashInBytes32(x));
+}
+
 function computeOPZKSubmissionHash(submissionData: {
     game_id: bigint;
     submission_nonce: bigint;
     segments: SegmentData[];
-    uninitializedOnchainState: boolean | undefined;
+    uninitializedOnchainState: boolean;
 }): string {
+    const initialStateHashes = encodeInitialStatesToBytes32(
+        submissionData.segments.map((x) => x.initial_states),
+        submissionData.segments[submissionData.segments.length - 1].final_state,
+        submissionData.uninitializedOnchainState
+    );
+
+    const playerActionHashes = encodePlayerActionToBytes32(
+        submissionData.segments.map((x) => x.player_action_inputs)
+    );
+
     const _hash = ethers.sha256(
         ethers.AbiCoder.defaultAbiCoder().encode(
             ["uint256", "uint256", "bytes32[]", "bytes32[]"],
             [
                 submissionData.game_id,
                 submissionData.submission_nonce,
-                [
-                    ...submissionData.segments.map((x, i) =>
-                        i == 0 &&
-                        submissionData.uninitializedOnchainState &&
-                        x.initial_states.every((x) => x === BigInt(0))
-                            ? EMPTY_STATE_HASH
-                            : computeHashInBytes32(x.initial_states)
-                    ),
-                    computeHashInBytes32(
-                        submissionData.segments[
-                            submissionData.segments.length - 1
-                        ].final_state
-                    ),
-                ],
-                [
-                    ...submissionData.segments.map((x) =>
-                        computeHashInBytes32(x.player_action_inputs)
-                    ),
-                ],
+                initialStateHashes,
+                playerActionHashes,
             ]
         )
     );
@@ -138,6 +152,8 @@ export {
     computeHashInU64Array,
     computeHashInBytes32,
     computeOPZKSubmissionHash,
+    encodeInitialStatesToBytes32,
+    encodePlayerActionToBytes32,
     bytes32ToU64Array,
     decodeBytesToU64Array,
     encodeU64ArrayToBytes,
