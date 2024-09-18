@@ -17,6 +17,7 @@ export interface SpinOPZKCredential {
 export interface SpinOPZKProverInput {
     game_id: bigint;
     segments: SegmentData[];
+    uninitializedOnchainState: boolean;
 }
 
 export class SpinOPZKProver extends SpinGameProverAbstract<
@@ -54,6 +55,8 @@ export class SpinOPZKProver extends SpinGameProverAbstract<
             game_id: submissionInput.game_id,
             submission_nonce: submissionNonce,
             segments: submissionInput.segments,
+            uninitializedOnchainState:
+                submissionInput.uninitializedOnchainState,
         });
         const { player_address, player_signature } =
             await this.getPlayerSignature(submissionHash);
