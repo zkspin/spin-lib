@@ -1,0 +1,67 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IPaymaster",
+  "sourceName": "contracts/game_opzk/IPaymaster.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "gameId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "blockNumber",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "playerAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "operatorAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "enum SubmissionStatus",
+              "name": "status",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "segmentInitialStateHashes",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "segmentPlayerInputsHashes",
+              "type": "bytes32[]"
+            }
+          ],
+          "internalType": "struct Submission",
+          "name": "userOp",
+          "type": "tuple"
+        }
+      ],
+      "name": "validatePaymasterSubmission",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxCost",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
