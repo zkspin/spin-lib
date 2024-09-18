@@ -18,7 +18,7 @@ import SpinOPZKGameContractABI from "./contracts/game_opzk/GameContract.sol/Spin
 
 import SpinZKGameContractABI from "./contracts/game_zk/GameContract.sol/SpinZKGameContract.json";
 
-import StakingContractABI from "./contracts/game_opzk/StakingContract.sol/SpinStakingContract.json";
+import StakingContractABI from "./contracts/game_opzk/StakingContract.sol/StakingContract.json";
 
 import GameStateStorageABI from "./contracts/shared/GameStateStorage.sol/GameStateStorage.json";
 
