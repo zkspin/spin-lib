@@ -48,7 +48,7 @@
     },
     {
       "inputs": [],
-      "name": "getStorageContract",
+      "name": "getRegistryContract",
       "outputs": [
         {
           "internalType": "address",
@@ -148,6 +148,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "registryContract",
+      "outputs": [
+        {
+          "internalType": "contract SpinGameRegistryContract",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "address",
@@ -184,19 +197,6 @@
       "name": "setVerifierImageCommitments",
       "outputs": [],
       "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "storageContract",
-      "outputs": [
-        {
-          "internalType": "contract GameStateStorage",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
       "type": "function"
     },
     {

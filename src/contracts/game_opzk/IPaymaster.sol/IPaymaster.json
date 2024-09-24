@@ -41,6 +41,11 @@
               "internalType": "bytes32[]",
               "name": "segmentPlayerInputsHashes",
               "type": "bytes32[]"
+            },
+            {
+              "internalType": "bytes",
+              "name": "finalState",
+              "type": "bytes"
             }
           ],
           "internalType": "struct Submission",

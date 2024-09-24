@@ -146,8 +146,28 @@ function computeOPZKSubmissionHash(submissionData: {
 
     return _hash;
 }
+function reverseBytes(input: bigint) {
+    let reversed = BigInt(0);
+    for (let i = 0; i < 8; i++) {
+        reversed =
+            (reversed << BigInt(8)) | ((input >> BigInt(8 * i)) & BigInt(0xff));
+    }
+    return reversed;
+}
 
+function splitAddress(address: string) {
+    const fullAddress = BigInt(address);
+    const mask64Bits = BigInt("0xFFFFFFFFFFFFFFFF"); // Mask to isolate 64 bits
+
+    // Split the address back into its parts
+    const part3 = reverseBytes((fullAddress << BigInt(32)) & mask64Bits);
+    const part2 = reverseBytes((fullAddress >> BigInt(32)) & mask64Bits);
+    const part1 = reverseBytes((fullAddress >> BigInt(96)) & mask64Bits);
+
+    return [part1, part2, part3];
+}
 export {
+    splitAddress,
     computeSegmentHash,
     computeHashInU64Array,
     computeHashInBytes32,
