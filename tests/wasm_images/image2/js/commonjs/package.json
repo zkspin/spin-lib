@@ -1,17 +1,11 @@
 {
   "name": "export",
-  "type": "module",
   "version": "0.1.0",
   "files": [
     "gameplay_bg.wasm",
     "gameplay.js",
-    "gameplay_bg.js",
     "gameplay.d.ts"
   ],
   "main": "gameplay.js",
-  "types": "gameplay.d.ts",
-  "sideEffects": [
-    "./gameplay.js",
-    "./snippets/*"
-  ]
+  "types": "gameplay.d.ts"
 }
