@@ -1,0 +1,11 @@
+{
+  "name": "export",
+  "version": "0.1.0",
+  "files": [
+    "gameplay_bg.wasm",
+    "gameplay.js",
+    "gameplay.d.ts"
+  ],
+  "main": "gameplay.js",
+  "types": "gameplay.d.ts"
+}

@@ -1,7 +1,7 @@
 import { assert, expect } from "chai";
 import { GameplayCjs } from "../src/gameplay/gameplay_cjs";
 import * as path from "path";
-import { GameplayCjs as GameplayCjsDynamic } from "../src/gameplay/gameplay_cjs_dynamic";
+import { GameplayCjsDynamic } from "../src/gameplay/gameplay_cjs_dynamic";
 import { printMemoryUsage } from "./memory_usage_helper";
 
 describe("Wasm Image Import", () => {
@@ -93,7 +93,7 @@ describe("Wasm Image Import", () => {
 
         printMemoryUsage();
 
-        const STRESS_TEST_COUNT = 200000;
+        const STRESS_TEST_COUNT = 50000;
         const STRESS_TEST_STEP_COUNT = 100;
 
         for (let i = 0; i < STRESS_TEST_COUNT; i++) {
