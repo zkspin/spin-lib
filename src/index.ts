@@ -4,7 +4,9 @@ export * from "./util";
 
 export * from "./zkwasm";
 
-export * from "./gameplay_simulator";
+export * from "./gameplay/gameplay_simulator";
+
+export * from "./gameplay/gameplay_cjs_dynamic";
 
 export * from "./spin_game/prover_dummy";
 

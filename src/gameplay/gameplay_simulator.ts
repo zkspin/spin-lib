@@ -1,7 +1,7 @@
-import { computeHashInU64Array } from "./util";
-import { GameplayAbstract } from "./interface";
-import { SpinGame } from "./spin_game/spin_game";
-import { SpinDummyProver } from "./spin_game/prover_dummy";
+import { computeHashInU64Array } from "../util";
+import { GameplayAbstract } from "../interface";
+import { SpinGame } from "../spin_game/spin_game";
+import { SpinDummyProver } from "../spin_game/prover_dummy";
 
 class GameplaySimulator {
     async simulateGame(
